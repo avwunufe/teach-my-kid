@@ -8,7 +8,8 @@ const profileRoutes = require("./routes/profile");
 const passport = require('passport')
 const session = require('express-session');
 const dotenv = require('dotenv');
-const path = require("path")
+const path = require("path");
+const { notLogged } = require("./verifyUser")
 dotenv.config();
 
 if (process.env.NODE_ENV === "production"){
@@ -19,6 +20,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"))
 app.use(express.static("public"));
 // Express session middleware
+app.get('/', notLogged, async (req, res)=>{
+    res.render('auth/signin', {message: ""})
+    });
 app.use(session({
     secret: "keyboard cat",
     resave: true,
