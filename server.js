@@ -8,8 +8,15 @@ const profileRoutes = require("./routes/profile");
 const passport = require('passport')
 const session = require('express-session');
 const dotenv = require('dotenv');
+const path = require("path")
 dotenv.config();
 
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"))
+}
+app.get("*", (req, res)=>{
+    res.sendFile(path.join(__dirname, "client/build", "index.html"))
+})
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
