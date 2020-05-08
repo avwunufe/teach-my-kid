@@ -1,0 +1,34 @@
+<header>
+    <nav class="header-nav">
+
+        <img src="/assets/large.png" alt="" srcset="">
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbarlinks">
+            <ul class="mainnavlinks">
+                <% if(user) { %>
+                <% switch (user.role) { 
+                    case "tutor" : %>
+                <li><a href="/class">Home</a></li>
+                <li><a href="/profile/edit">Edit Profile</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+                <% break;
+                    case "student" : %>
+                <li><a href="/class">Home</a></li>
+                <li><a href="/profile/edit">Edit Profile</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+                <% break;
+                } %>
+                <% } else { %>
+                <!-- <li><a href="/users/">Home</a></li> -->
+                <li><a href="/users/signup">Register</a></li>
+                <li><a href="/users/signin">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+
+    </nav>
+</header>
