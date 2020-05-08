@@ -8,7 +8,6 @@ const profileRoutes = require("./routes/profile");
 const passport = require('passport')
 const session = require('express-session');
 const dotenv = require('dotenv');
-const config = require('./config/config');
 dotenv.config();
 
 
@@ -40,7 +39,7 @@ app.use("/profile", profileRoutes);
 
 require('./config/passport')(passport);
 
-mongoose.connect(config.database, { useNewUrlParser: true });
+mongoose.connect(process.env.TOKEN_SECRET, { useNewUrlParser: true });
 mongoose.connection.once('open', ()=>{
     console.log('Connected to DB')
 }).on('error', ()=>{
@@ -48,5 +47,4 @@ mongoose.connection.once('open', ()=>{
 });
 
 const PORT = process.env.PORT || 3000
-console.log(process.env.TOKEN_SECRET)
 app.listen(PORT, ()=>{console.log("Listening on port "+ PORT)})
