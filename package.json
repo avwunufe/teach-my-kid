@@ -17,7 +17,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "^7.0.1"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "test": "mocha",
